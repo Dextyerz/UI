@@ -606,11 +606,6 @@ function Luxt1.CreateWindow(libName, logoId)
                         --
                         keyInfo = keyInfo or "KeyBind"
                         local oldKey = first.Name
-                        key1.Text = ". . ."
-                        if a.KeyCode.Name ~= "Unknown" then
-                        key1.Text = a.KeyCode.Name
-                        oldKey = a.KeyCode.Name;
-                        end
                         callback = callback or function() end
 
                         local KeyBindFrame = Instance.new("Frame")
