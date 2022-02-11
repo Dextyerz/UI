@@ -604,7 +604,7 @@ function Luxt1.CreateWindow(libName, logoId)
 
                     function ItemHandling:KeyBind(keyInfo, first, callback)
                         --
-                        keyInfo = keyInfo or "KeyBind"
+                        keyInfo = default and default.Name or "None"
                         local oldKey = first.Name
                         callback = callback or function() end
 
