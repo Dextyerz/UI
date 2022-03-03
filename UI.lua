@@ -602,7 +602,7 @@ function Luxt1.CreateWindow(libName, logoId)
                 end)
             end
 
-                function ItemHandling:Select(toggInfo, callback)
+                function ItemHandling:Select(selectInfo, callback)
                     local SelectFrame = Instance.new("Frame")
                     local selectFrame = Instance.new("Frame")
                     local UICorner = Instance.new("UICorner")
@@ -613,7 +613,7 @@ function Luxt1.CreateWindow(libName, logoId)
                     local UIListLayout = Instance.new("UIListLayout")
                     local a 
                     --
-                    toggInfo = toggInfo or "Toggle"
+                    selectInfo = selectInfo or "Select"
                     callback = callback or function() end
 
                     SelectFrame.Name = "SelectFrame"
@@ -642,18 +642,18 @@ function Luxt1.CreateWindow(libName, logoId)
                     checkBtn.ImageRectOffset = Vector2.new(940, 784)
                     checkBtn.ImageRectSize = Vector2.new(48, 48)
 
-                    sellectInfo.Name = "sellectInfo"
-                    sellectInfo.Parent = selectFrame
-                    sellectInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    sellectInfo.BackgroundTransparency = 1.000
-                    sellectInfo.Position = UDim2.new(0.104109593, 0, 0, 0)
-                    sellectInfo.Size = UDim2.new(0.254794508, 162, 1, 0)
-                    sellectInfo.ZIndex = 2
-                    sellectInfo.Font = Enum.Font.GothamSemibold
-                    sellectInfo.Text = toggInfo
-                    sellectInfo.TextColor3 = Color3.fromRGB(97, 97, 97)
-                    sellectInfo.TextSize = 14.000
-                    sellectInfo.TextXAlignment = Enum.TextXAlignment.Left
+                    selectinfo.Name = "selectinfo"
+                    selectinfo.Parent = selectFrame
+                    selectinfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    selectinfo.BackgroundTransparency = 1.000
+                    selectinfo.Position = UDim2.new(0.104109593, 0, 0, 0)
+                    selectinfo.Size = UDim2.new(0.254794508, 162, 1, 0)
+                    selectinfo.ZIndex = 2
+                    selectinfo.Font = Enum.Font.GothamSemibold
+                    selectinfo.Text = toggInfo
+                    selectinfo.TextColor3 = Color3.fromRGB(97, 97, 97)
+                    selectinfo.TextSize = 14.000
+                    selectinfo.TextXAlignment = Enum.TextXAlignment.Left
 
                     selInList.Name = "selInList"
                     selInList.Parent = selectFrame
@@ -673,25 +673,25 @@ function Luxt1.CreateWindow(libName, logoId)
 
                     selectFrame.Text = v
                     local on = v
-                    local togDe = false
+                    local selDe = false
                     checkBtn.MouseButton1Click:Connect(function()
-                        if not togDe then
-                                togDe = v
+                        if not selDe then
+                                selDe = v
                                 on = not on
                                  callback(on) 
                                 if on then
-                                    checkBtn.Parent.sellectInfo.TextColor3 = Color3.fromRGB(153, 255, 238)
+                                    checkBtn.Parent.selectinfo.TextColor3 = Color3.fromRGB(153, 255, 238)
                                     checkBtn.ImageColor3 = Color3.fromRGB(153, 255, 238)
                                     checkBtn.ImageRectOffset = Vector2.new(4, 836)
                                     checkBtn.ImageRectSize = Vector2.new(48,48)
                                 else
-                                    checkBtn.Parent.sellectInfo.TextColor3 = Color3.fromRGB(97, 97, 97)
+                                    checkBtn.Parent.selectinfo.TextColor3 = Color3.fromRGB(97, 97, 97)
                                     checkBtn.ImageColor3 = Color3.fromRGB(97, 97, 97)
                                     checkBtn.ImageRectOffset = Vector2.new(940, 784)
                                     checkBtn.ImageRectSize = Vector2.new(48,48)
                                 end
                                 wait(1)
-                                togDe = false
+                                selDe = false
                             end
                     end)
 
