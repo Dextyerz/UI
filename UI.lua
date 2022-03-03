@@ -501,37 +501,138 @@ function Luxt1.CreateWindow(libName, logoId)
                 end)
             end
 
-                function ItemHandling:Toggle(toggInfo, callback)
-                    local ToggleFrame = Instance.new("Frame")
-                    local toggleFrame = Instance.new("Frame")
+            function ItemHandling:Toggle(toggInfo, callback)
+                local ToggleFrame = Instance.new("Frame")
+                local toggleFrame = Instance.new("Frame")
+                local UICorner = Instance.new("UICorner")
+                local checkBtn = Instance.new("ImageButton")
+                local toggleInfo = Instance.new("TextLabel")
+                local togInList = Instance.new("UIListLayout")
+                local toginPad = Instance.new("UIPadding")
+                local UIListLayout = Instance.new("UIListLayout")
+                local a 
+                --
+                toggInfo = toggInfo or "Toggle"
+                callback = callback or function() end
+
+                ToggleFrame.Name = "ToggleFrame"
+                ToggleFrame.Parent = sectionFrame
+                ToggleFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+                ToggleFrame.BackgroundTransparency = 1.000
+                ToggleFrame.Size = UDim2.new(0, 365, 0, 36)
+
+                toggleFrame.Name = "toggleFrame"
+                toggleFrame.Parent = ToggleFrame
+                toggleFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+                toggleFrame.Size = UDim2.new(0, 365, 0, 36)
+                toggleFrame.ZIndex = 2
+
+                UICorner.CornerRadius = UDim.new(0, 3)
+                UICorner.Parent = toggleFrame
+
+                checkBtn.Name = "checkBtn"
+                checkBtn.Parent = toggleFrame
+                checkBtn.BackgroundTransparency = 1.000
+                checkBtn.Position = UDim2.new(0.0191780813, 0, 0.138888896, 0)
+                checkBtn.Size = UDim2.new(0, 25, 0, 25)
+                checkBtn.ZIndex = 2
+                checkBtn.Image = "rbxassetid://3926311105"
+                checkBtn.ImageColor3 = Color3.fromRGB(97, 97, 97)
+                checkBtn.ImageRectOffset = Vector2.new(940, 784)
+                checkBtn.ImageRectSize = Vector2.new(48, 48)
+
+                toggleInfo.Name = "toggleInfo"
+                toggleInfo.Parent = toggleFrame
+                toggleInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                toggleInfo.BackgroundTransparency = 1.000
+                toggleInfo.Position = UDim2.new(0.104109593, 0, 0, 0)
+                toggleInfo.Size = UDim2.new(0.254794508, 162, 1, 0)
+                toggleInfo.ZIndex = 2
+                toggleInfo.Font = Enum.Font.GothamSemibold
+                toggleInfo.Text = toggInfo
+                toggleInfo.TextColor3 = Color3.fromRGB(97, 97, 97)
+                toggleInfo.TextSize = 14.000
+                toggleInfo.TextXAlignment = Enum.TextXAlignment.Left
+
+                togInList.Name = "togInList"
+                togInList.Parent = toggleFrame
+                togInList.FillDirection = Enum.FillDirection.Horizontal
+                togInList.SortOrder = Enum.SortOrder.LayoutOrder
+                togInList.VerticalAlignment = Enum.VerticalAlignment.Center
+                togInList.Padding = UDim.new(0, 5)
+
+                toginPad.Name = "toginPad"
+                toginPad.Parent = toggleFrame
+                toginPad.PaddingLeft = UDim.new(0, 7)
+
+                UIListLayout.Parent = ToggleFrame
+                UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+                UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+                UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+
+                local on = false
+                local togDe = false
+                checkBtn.MouseButton1Click:Connect(function()
+                    if not togDe then
+                            togDe = true
+                            on = not on
+                             callback(on) 
+                            if on then
+                                checkBtn.Parent.toggleInfo.TextColor3 = Color3.fromRGB(153, 255, 238)
+                                checkBtn.ImageColor3 = Color3.fromRGB(153, 255, 238)
+                                checkBtn.ImageRectOffset = Vector2.new(4, 836)
+                                checkBtn.ImageRectSize = Vector2.new(48,48)
+                            else
+                                checkBtn.Parent.toggleInfo.TextColor3 = Color3.fromRGB(97, 97, 97)
+                                checkBtn.ImageColor3 = Color3.fromRGB(97, 97, 97)
+                                checkBtn.ImageRectOffset = Vector2.new(940, 784)
+                                checkBtn.ImageRectSize = Vector2.new(48,48)
+                            end
+                            wait(1)
+                            togDe = false
+                        end
+                end)
+
+                checkBtn.MouseButton1Up:Connect(function()
+                    checkBtn.Parent:TweenSize(UDim2.new(0, 365,0, 36), "InOut", "Quint", 0.18, true)
+                end)
+
+                checkBtn.MouseButton1Down:Connect(function()
+                    checkBtn.Parent:TweenSize(UDim2.new(0, 359,0, 30), "InOut", "Quint", 0.18, true)
+                end)
+            end
+
+                function ItemHandling:Select(toggInfo, callback)
+                    local SelectFrame = Instance.new("Frame")
+                    local selectFrame = Instance.new("Frame")
                     local UICorner = Instance.new("UICorner")
                     local checkBtn = Instance.new("ImageButton")
-                    local toggleInfo = Instance.new("TextLabel")
-                    local togInList = Instance.new("UIListLayout")
-                    local toginPad = Instance.new("UIPadding")
+                    local selectInfo = Instance.new("TextLabel")
+                    local selInList = Instance.new("UIListLayout")
+                    local selinPad = Instance.new("UIPadding")
                     local UIListLayout = Instance.new("UIListLayout")
                     local a 
                     --
                     toggInfo = toggInfo or "Toggle"
                     callback = callback or function() end
 
-                    ToggleFrame.Name = "ToggleFrame"
-                    ToggleFrame.Parent = sectionFrame
-                    ToggleFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-                    ToggleFrame.BackgroundTransparency = 1.000
-                    ToggleFrame.Size = UDim2.new(0, 365, 0, 36)
+                    SelectFrame.Name = "SelectFrame"
+                    SelectFrame.Parent = sectionFrame
+                    SelectFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+                    SelectFrame.BackgroundTransparency = 1.000
+                    SelectFrame.Size = UDim2.new(0, 365, 0, 36)
 
-                    toggleFrame.Name = "toggleFrame"
-                    toggleFrame.Parent = ToggleFrame
-                    toggleFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-                    toggleFrame.Size = UDim2.new(0, 365, 0, 36)
-                    toggleFrame.ZIndex = 2
+                    selectFrame.Name = "selectFrame"
+                    selectFrame.Parent = SelectFrame
+                    selectFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+                    selectFrame.Size = UDim2.new(0, 365, 0, 36)
+                    selectFrame.ZIndex = 2
 
                     UICorner.CornerRadius = UDim.new(0, 3)
-                    UICorner.Parent = toggleFrame
+                    UICorner.Parent = selectFrame
 
                     checkBtn.Name = "checkBtn"
-                    checkBtn.Parent = toggleFrame
+                    checkBtn.Parent = selectFrame
                     checkBtn.BackgroundTransparency = 1.000
                     checkBtn.Position = UDim2.new(0.0191780813, 0, 0.138888896, 0)
                     checkBtn.Size = UDim2.new(0, 25, 0, 25)
@@ -541,49 +642,50 @@ function Luxt1.CreateWindow(libName, logoId)
                     checkBtn.ImageRectOffset = Vector2.new(940, 784)
                     checkBtn.ImageRectSize = Vector2.new(48, 48)
 
-                    toggleInfo.Name = "toggleInfo"
-                    toggleInfo.Parent = toggleFrame
-                    toggleInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    toggleInfo.BackgroundTransparency = 1.000
-                    toggleInfo.Position = UDim2.new(0.104109593, 0, 0, 0)
-                    toggleInfo.Size = UDim2.new(0.254794508, 162, 1, 0)
-                    toggleInfo.ZIndex = 2
-                    toggleInfo.Font = Enum.Font.GothamSemibold
-                    toggleInfo.Text = toggInfo
-                    toggleInfo.TextColor3 = Color3.fromRGB(97, 97, 97)
-                    toggleInfo.TextSize = 14.000
-                    toggleInfo.TextXAlignment = Enum.TextXAlignment.Left
+                    sellectInfo.Name = "sellectInfo"
+                    sellectInfo.Parent = selectFrame
+                    sellectInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    sellectInfo.BackgroundTransparency = 1.000
+                    sellectInfo.Position = UDim2.new(0.104109593, 0, 0, 0)
+                    sellectInfo.Size = UDim2.new(0.254794508, 162, 1, 0)
+                    sellectInfo.ZIndex = 2
+                    sellectInfo.Font = Enum.Font.GothamSemibold
+                    sellectInfo.Text = toggInfo
+                    sellectInfo.TextColor3 = Color3.fromRGB(97, 97, 97)
+                    sellectInfo.TextSize = 14.000
+                    sellectInfo.TextXAlignment = Enum.TextXAlignment.Left
 
-                    togInList.Name = "togInList"
-                    togInList.Parent = toggleFrame
-                    togInList.FillDirection = Enum.FillDirection.Horizontal
-                    togInList.SortOrder = Enum.SortOrder.LayoutOrder
-                    togInList.VerticalAlignment = Enum.VerticalAlignment.Center
-                    togInList.Padding = UDim.new(0, 5)
+                    selInList.Name = "selInList"
+                    selInList.Parent = selectFrame
+                    selInList.FillDirection = Enum.FillDirection.Horizontal
+                    selInList.SortOrder = Enum.SortOrder.LayoutOrder
+                    selInList.VerticalAlignment = Enum.VerticalAlignment.Center
+                    selInList.Padding = UDim.new(0, 5)
 
-                    toginPad.Name = "toginPad"
-                    toginPad.Parent = toggleFrame
-                    toginPad.PaddingLeft = UDim.new(0, 7)
+                    selinPad.Name = "selinPad"
+                    selinPad.Parent = selectFrame
+                    selinPad.PaddingLeft = UDim.new(0, 7)
 
-                    UIListLayout.Parent = ToggleFrame
+                    UIListLayout.Parent = SelectFrame
                     UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
                     UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
                     UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 
-                    local on = false
+                    selectFrame.Text = v
+                    local on = v
                     local togDe = false
                     checkBtn.MouseButton1Click:Connect(function()
                         if not togDe then
-                                togDe = true
+                                togDe = v
                                 on = not on
                                  callback(on) 
                                 if on then
-                                    checkBtn.Parent.toggleInfo.TextColor3 = Color3.fromRGB(153, 255, 238)
+                                    checkBtn.Parent.sellectInfo.TextColor3 = Color3.fromRGB(153, 255, 238)
                                     checkBtn.ImageColor3 = Color3.fromRGB(153, 255, 238)
                                     checkBtn.ImageRectOffset = Vector2.new(4, 836)
                                     checkBtn.ImageRectSize = Vector2.new(48,48)
                                 else
-                                    checkBtn.Parent.toggleInfo.TextColor3 = Color3.fromRGB(97, 97, 97)
+                                    checkBtn.Parent.sellectInfo.TextColor3 = Color3.fromRGB(97, 97, 97)
                                     checkBtn.ImageColor3 = Color3.fromRGB(97, 97, 97)
                                     checkBtn.ImageRectOffset = Vector2.new(940, 784)
                                     checkBtn.ImageRectSize = Vector2.new(48,48)
@@ -614,8 +716,8 @@ function Luxt1.CreateWindow(libName, logoId)
                         local key = Instance.new("TextButton")
                         local UICorner_2 = Instance.new("UICorner")
                         local keybindInfo = Instance.new("TextLabel")
-                        local toginPad = Instance.new("UIPadding")
-                        local togInList = Instance.new("UIListLayout")
+                        local selinPad = Instance.new("UIPadding")
+                        local selInList = Instance.new("UIListLayout")
                         local UIListLayout = Instance.new("UIListLayout")
 
                         KeyBindFrame.Name = "KeyBindFrame"
@@ -660,16 +762,16 @@ function Luxt1.CreateWindow(libName, logoId)
                         keybindInfo.TextSize = 13.000
                         keybindInfo.TextXAlignment = Enum.TextXAlignment.Left
 
-                        toginPad.Name = "toginPad"
-                        toginPad.Parent = keybindFrame
-                        toginPad.PaddingLeft = UDim.new(0, 7)
+                        selinPad.Name = "selinPad"
+                        selinPad.Parent = keybindFrame
+                        selinPad.PaddingLeft = UDim.new(0, 7)
 
-                        togInList.Name = "togInList"
-                        togInList.Parent = keybindFrame
-                        togInList.FillDirection = Enum.FillDirection.Horizontal
-                        togInList.SortOrder = Enum.SortOrder.LayoutOrder
-                        togInList.VerticalAlignment = Enum.VerticalAlignment.Center
-                        togInList.Padding = UDim.new(0, 8)
+                        selInList.Name = "selInList"
+                        selInList.Parent = keybindFrame
+                        selInList.FillDirection = Enum.FillDirection.Horizontal
+                        selInList.SortOrder = Enum.SortOrder.LayoutOrder
+                        selInList.VerticalAlignment = Enum.VerticalAlignment.Center
+                        selInList.Padding = UDim.new(0, 8)
 
                         UIListLayout.Parent = KeyBindFrame
                         UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
